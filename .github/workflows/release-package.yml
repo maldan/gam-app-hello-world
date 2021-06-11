@@ -16,10 +16,10 @@ jobs:
           go-version: "1.16"
       - run: go version
 
-      - run: GOARCH=amd64 GOOS=linux go build -ldflags "-s -w" .
-      - run: GOARCH=amd64 GOOS=windows go build -ldflags "-s -w" .
-      - run: zip -9 -r application-linux-amd64.zip gam
-      - run: zip -9 -r application-windows-amd64.zip gam.exe
+      - run: GOARCH=amd64 GOOS=linux go build -ldflags "-s -w" -o app .
+      - run: GOARCH=amd64 GOOS=windows go build -ldflags "-s -w" -o app.exe .
+      - run: zip -9 -r application-linux-amd64.zip app
+      - run: zip -9 -r application-windows-amd64.zip app.exe
 
       - run: echo "RELEASE_VERSION=`git tag | sort -V | tail -1`" >> $GITHUB_ENV
 
