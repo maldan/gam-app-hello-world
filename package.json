@@ -1,0 +1,17 @@
+{
+  "name": "gam-hello-world",
+  "version": "0.0.1",
+  "description": "Gam hello world example",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maldan/gam-hello-world.git"
+  },
+  "keywords": [],
+  "author": "Maldan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maldan/gam-hello-world/issues"
+  },
+  "homepage": "https://github.com/maldan/gam-hello-world#readme"
+}
