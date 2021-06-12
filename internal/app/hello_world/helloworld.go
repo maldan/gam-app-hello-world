@@ -1,31 +1,32 @@
 package helloworld
 
 import (
+	"embed"
 	"flag"
 	"fmt"
+	"os"
 
 	"github.com/maldan/go-restserver"
+	"github.com/zserge/lorca"
 )
 
-func Start() {
+func Start(frontFs embed.FS) {
+	var host = flag.String("host", "127.0.0.1", "host")
 	var port = flag.Int("port", 16000, "port")
-	// var noGui = flag.Bool("nogui", false, "gui")
+	var gui = flag.Bool("gui", false, "gui")
 	flag.Parse()
 
-	/*if !*noGui {
+	if *gui {
 		go (func() {
-			debug := true
-			w := webview.New(debug)
-			defer w.Destroy()
-			w.SetTitle("Minimal webview example")
-			w.SetSize(800, 600, webview.HintNone)
-			w.Navigate("https://en.m.wikipedia.org/wiki/Main_Page")
-			w.Run()
+			ui, _ := lorca.New("", "", 480, 320)
+			defer ui.Close()
+			ui.Load(fmt.Sprintf("http://%s:%d/", *host, *port))
+			<-ui.Done()
 			os.Exit(0)
 		})()
-	}*/
+	}
 
-	restserver.Start(fmt.Sprintf("127.0.0.1:%d", *port), map[string]interface{}{
-		"/": "/",
+	restserver.Start(fmt.Sprintf("%s:%d", *host, *port), map[string]interface{}{
+		"/": restserver.VirtualFs{Root: "frontend/build/", Fs: frontFs},
 	})
 }
