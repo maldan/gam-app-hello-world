@@ -1,6 +1,6 @@
 {
   "name": "gam-hello-world",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Gam hello world example",
   "main": "index.js",
   "repository": {
