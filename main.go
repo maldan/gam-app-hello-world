@@ -1,7 +1,14 @@
 package main
 
-import helloworld "github.com/maldan/gam-hello-world/internal/app/hello_world"
+import (
+	"embed"
+
+	helloworld "github.com/maldan/gam-hello-world/internal/app/hello_world"
+)
+
+//go:embed frontend/build/*
+var frontFs embed.FS
 
 func main() {
-	helloworld.Start() //
+	helloworld.Start(frontFs) //
 }
