@@ -11,9 +11,13 @@ import (
 )
 
 func Start(frontFs embed.FS) {
-	var host = flag.String("host", "127.0.0.1", "host")
-	var port = flag.Int("port", 16000, "port")
-	var gui = flag.Bool("gui", false, "gui")
+	var host = flag.String("host", "127.0.0.1", "Server Hostname")
+	var port = flag.Int("port", 16000, "Server Port")
+	var gui = flag.Bool("gui", false, "Use Gui")
+	_ = flag.Int("width", 1100, "Window Width")
+	_ = flag.Int("height", 900, "Window Height")
+	_ = flag.String("data-dir", "db", "Data Directory")
+	_ = flag.String("app-id", "id", "App id")
 	flag.Parse()
 
 	if *gui {
